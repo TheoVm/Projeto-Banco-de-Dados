@@ -34,11 +34,18 @@ def listar_produtos():
     conexao = conectar()
     if not conexao:
         return
-    cursor = conexao.cursor()
+
+    cursor = conexao.cursor(dictionary=True)
+
     cursor.execute("SELECT id, nome, descricao, estoque, valor FROM produto LIMIT 10;")
     produtos = cursor.fetchall()
     print("\n=== PRODUTOS CADASTRADOS ===")
-    for p in produtos:
-        print(f"{p[0]} - {p[1]} | {p[2]} | Estoque: {p[3]} | Preço: R$ {p[4]:.2f}")
+
+    if not produtos:
+        print("Nenhum produto cadastrado.")
+    else:
+        for p in produtos:
+            print(f"ID: {p['id']} - {p['nome']} | {p['descricao']} | Estoque: {p['estoque']} | Preço: R$ {p['valor']:.2f}")
+
     cursor.close()
     conexao.close()

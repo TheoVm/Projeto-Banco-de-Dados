@@ -9,12 +9,14 @@ def registrar_venda():
         id_vendedor = int(input("ID do vendedor: "))
         id_cliente = int(input("ID do cliente: "))
     except:
-        print("Os IDs devem ser nÃºmeros.")
+        print("Os IDs devem ser números.")
         return
 
     destino = input("Destino da entrega: ").strip()
-    data = datetime.now().strftime("%Y-%m-%d")
-    hora = datetime.now().strftime("%H:%M:%S")
+
+    agora = datetime.now()
+    data = agora.date()
+    hora = agora.time()
 
     conexao = conectar()
     if not conexao:

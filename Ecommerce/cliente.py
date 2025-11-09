@@ -1,7 +1,6 @@
 from ecommerce_connection import conectar
 from datetime import datetime
 
-
 def cadastrar_cliente():
     print("\n=== CADASTRAR CLIENTE ===")
     nome = input("Nome: ").strip()
@@ -37,17 +36,34 @@ def cadastrar_cliente():
         cursor.close()
         conexao.close()
 
-
 def listar_clientes():
     conexao = conectar()
     if not conexao:
         return
-    cursor = conexao.cursor()
-    cursor.execute("SELECT id, nome, idade, sexo, nascimento FROM cliente LIMIT 15;")
-    lista = cursor.fetchall()
+
+    cursor = conexao.cursor(dictionary=True)
+
+    sql = """
+        SELECT 
+            id, 
+            nome, 
+            idade, 
+            sexo, 
+            DATE_FORMAT(nascimento, '%d-%m-%Y') as nasc_formatado
+        FROM cliente 
+        LIMIT 15;
+    """
+    cursor.execute(sql)
+
+    resultados = cursor.fetchall()
+
     print("\n=== LISTA DE CLIENTES ===")
-    for c in lista:
-        print(f"ID {c[0]} - {c[1]} | {c[3]} | {c[2]} anos | Nasc: {c[4].strftime('%d-%m-%Y')}")
+
+    if not resultados:
+        print("Nenhum cliente cadastrado.")
+    else:
+        for cliente in resultados:
+            print(f"ID: {cliente['id']} | Nome: {cliente['nome']} | {cliente['sexo']} | {cliente['idade']} anos | Nasc: {cliente['nasc_formatado']}")
+
     cursor.close()
     conexao.close()
-
