@@ -6,7 +6,7 @@ CREATE TABLE cliente (
 	id INT PRIMARY KEY auto_increment,
     nome varchar(100) not null,
     idade smallint not null,
-    sexo char(1) not null check(sexo in ('F', 'M')),
+    sexo char(1) not null check(sexo in ('F', 'M', 'O')),
     nascimento date not null
 );
 
@@ -43,7 +43,7 @@ CREATE TABLE produto (
     nome varchar(100) not null,
     descricao varchar(100) not null,
     estoque int,
-    valor int not null,
+    valor float(4,2) not null,
     observacoes varchar(100)
 );
 
@@ -56,7 +56,6 @@ CREATE TABLE transportadora (
 CREATE TABLE venda (
 	id_produto INT PRIMARY KEY,
     id_transportadora int,
-    id_vendedor int,
     id_cliente INT,
     id_vendedor INT,
     destino varchar(50) not null,
