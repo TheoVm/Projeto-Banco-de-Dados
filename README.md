@@ -1,61 +1,96 @@
-# Projeto E-Commerce
+<div align="center">
 
-Este projeto implementa um sistema de e-commerce prático, desenvolvido como parte da disciplina de Banco de Dados.  
-O objetivo é integrar **MySQL (SQL)** com **Python**, aplicando o uso de tabelas, constraints, triggers, functions, procedures e views, além de um programa interativo no terminal.
+  # Universidade Católica de Pernambuco (UNICAP)
+  
+  <img src="https://media.tenor.com/I5kylHJduP4AAAAj/disc-spinning.gif" width="120px">
+  
+  <br>
 
----
+  ## Projeto Banco de Dados — Loja de Discos
 
-## Integrantes do grupo
 
-- Felipe Assis Ferreira dos Santos
-- Júlio César Bizarria Lins
-- Luciano Henrique Pereira Cordeiro
-- Pedro Mota Mendes
-- Theo Vieira Marcelino
-
----
-
-## Descrição do sistema
-
-O sistema representa uma loja virtual (e-commerce) capaz de armazenar e gerenciar informações sobre:
-
-- **Clientes** (com sexo `M`, `F` ou `O`)  
-- **Clientes especiais** (com cashback)  
-- **Vendedores** (com bônus a partir de vendas acima de R$ 1000)  
-- **Produtos**  
-- **Transportadoras**  
-- **Vendas**
-
-O banco de dados implementa **restrições, relacionamentos, triggers e procedures** conforme o enunciado do projeto.
+  ---
+  
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
+  <img src="https://img.shields.io/badge/Status-Finalizadoo-green?style=for-the-badge">
+  
+</div>
 
 ---
 
-## Tecnologias utilizadas
+## 🏪 Sobre o Projeto
 
-- **Python 3**
-- **MySQL**
-- **Biblioteca `mysql.connector`**
+O **Projeto Banco de Dados — Loja de Discos** foi desenvolvido como parte da disciplina de **Banco de Dados**, com o objetivo de **modelar e implementar um sistema de gerenciamento de uma loja de música**.
 
----
-
-## Funcionalidades do sistema (Python)
-
-O programa principal (`main.py`) apresenta um menu com as seguintes opções:
-
-| Opção | Descrição |
-|:------|:-----------|
-| 1 | Cadastrar cliente |
-| 2 | Listar clientes |
-| 3 | Cadastrar produto |
-| 4 | Listar produtos |
-| 5 | Registrar venda |
-| 6 | Executar procedure de reajuste salarial |
-| 7 | Executar procedure de sorteio |
-| 8 | Consultar view de vendas por vendedor |
-| 9 | Consultar view de clientes especiais |
-| 0 | Sair do sistema |
+A aplicação simula o funcionamento de uma loja que realiza o **cadastro de clientes, vendedores, produtos (discos de vinil, CDs, etc.) e vendas**, garantindo a integridade e organização dos dados por meio de um banco relacional.
 
 ---
 
-## Estrutura de arquivos
+## 💽 Funcionalidades
+
+- 👤 **Cadastro de Clientes**  
+  Armazena informações como nome, sexo e data de nascimento.
+
+- 💼 **Cadastro de Vendedores**  
+  Gerencia os funcionários da loja e suas respectivas vendas.
+
+- 💿 **Cadastro de Produtos (Discos)**  
+  Inclui informações sobre álbuns, artistas, gêneros musicais e preços.
+
+- 🧾 **Registro de Vendas**  
+  Relaciona clientes, vendedores e produtos, controlando o histórico de transações.
+
+- 📊 **Consultas SQL**  
+  Permite realizar consultas complexas para análise de desempenho de vendas.
+
+---
+
+## 🧠 Modelagem do Banco de Dados
+
+A modelagem foi feita seguindo os princípios fundamentais da modelagem de banco de dados, garantindo consistência e evitando redundância de dados.
+
+### 🔹 Diagrama Entidade-Relacionamento (DER)
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/5d727165-9db2-49fa-b976-ea37deef09da" width="700px">
+</div>
+
+### 🔹 Modelo Lógico do Banco de Dados
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/dee48577-235d-4f08-97f7-9c2c545f38a2" width="700px">
+</div>
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+| Tecnologia | Descrição |
+|-------------|------------|
+| **Python** | Implementação das funções e interação com o banco |
+| **MySQL** | Sistema de Gerenciamento de Banco de Dados |
+| **MySQL Connector** | Integração Python ↔ MySQL |
+| **Git/GitHub** | Controle de versão e colaboração |
+
+---
+
+
+---
+
+## 👥 Integrantes
+
+| Nome |
+|------|
+| Felipe Assis Ferreira dos Santos
+| Júlio César Bizarria Lins
+| Luciano Henrique Pereira Cordeiro
+| Pedro Mota Mendes
+| Theo Vieira Marcelino
+
+---
+
+## 🎯 Objetivo
+
+O projeto visa aplicar os conhecimentos de **modelagem, normalização e manipulação de bancos de dados relacionais**, simulando um caso prático de **sistema de gestão comercial**.
+
+---
 
