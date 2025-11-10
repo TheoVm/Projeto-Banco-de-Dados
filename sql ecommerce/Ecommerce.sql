@@ -1,4 +1,7 @@
+DROP DATABASE IF EXISTS ECOMMERCE;
+CREATE DATABASE ECOMMERCE;
 USE ECOMMERCE;
+FLUSH PRIVILEGES;
 
 CREATE TABLE cliente (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -89,8 +92,8 @@ CREATE USER 'gerente_ecommerce'@'%' IDENTIFIED BY 'Gerente123';
 GRANT SELECT, UPDATE, DELETE ON ecommerce.* TO 'gerente_ecommerce'@'%';
 
 CREATE USER 'funcionario_ecommerce'@'%' IDENTIFIED BY 'SenhaFunc123';
-GRANT SELECT, INSERT ON ecommerce.venda TO 'funcionario_ecommerce'@'%';
-GRANT SELECT, INSERT ON ecommerce.item_venda TO 'funcionario_ecommerce'@'%';
+GRANT SELECT, INSERT ON venda TO 'funcionario_ecommerce'@'%';
+GRANT SELECT, INSERT ON item_venda TO 'funcionario_ecommerce'@'%';
 
 DELIMITER $$
 CREATE FUNCTION calcular_idade(
