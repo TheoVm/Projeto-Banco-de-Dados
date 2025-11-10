@@ -19,6 +19,6 @@ def login():
             return 3
         elif opc == "0":
             print("\nSaindo do sistema...")
-            return None  # Retorna None para indicar saída
+            return None
         else:
-            print("\n⚠️  Opção inválida! Insira uma opção válida.")
+            print("\nOpção inválida! Insira uma opção válida.")

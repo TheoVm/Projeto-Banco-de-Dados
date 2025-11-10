@@ -8,7 +8,7 @@ def cadastrar_produto(usuario, senha):
     try:
         estoque = int(input("Quantidade em estoque: "))
         valor = float(input("Preço: "))
-        id_vendedor = int(input("ID do vendedor: "))  # CORREÇÃO: Adicionado campo obrigatório
+        id_vendedor = int(input("ID do vendedor: "))
     except ValueError:
         print("Digite valores numéricos válidos para estoque, preço e ID do vendedor.")
         return
@@ -20,7 +20,7 @@ def cadastrar_produto(usuario, senha):
 
     cursor = conexao.cursor()
     try:
-        # CORREÇÃO: Adicionado id_vendedor na query
+
         sql = """INSERT INTO produto 
                  (nome, descricao, estoque, valor, observacoes, id_vendedor) 
                  VALUES (%s, %s, %s, %s, %s, %s)"""
@@ -43,7 +43,6 @@ def listar_produtos(usuario, senha):
 
     cursor = conexao.cursor(dictionary=True)
 
-    # MELHORIA: Incluir nome do vendedor e observações
     sql = """
         SELECT 
             p.id, 

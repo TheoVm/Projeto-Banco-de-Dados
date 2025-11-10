@@ -15,7 +15,7 @@ def registrar_venda(usuario, senha):
     destino = input("Destino da entrega: ").strip()
 
     try:
-        frete = float(input("Valor do frete: "))  # CORREÇÃO: Campo obrigatório
+        frete = float(input("Valor do frete: "))
     except ValueError:
         print("O valor do frete deve ser um número.")
         return
@@ -30,7 +30,6 @@ def registrar_venda(usuario, senha):
 
     cursor = conexao.cursor()
     try:
-        # Primeiro, registra a venda
         sql_venda = """INSERT INTO venda 
             (id_transportadora, id_cliente, id_vendedor, destino, data, hora, frete)
             VALUES (%s, %s, %s, %s, %s, %s, %s)
@@ -39,7 +38,6 @@ def registrar_venda(usuario, senha):
 
         id_venda = cursor.lastrowid
 
-        # Agora registra os itens da venda
         print("\n=== ITENS DA VENDA ===")
         while True:
             try:
@@ -61,7 +59,6 @@ def registrar_venda(usuario, senha):
         conexao.commit()
         print(f"\nVenda #{id_venda} registrada com sucesso!")
 
-        # Chama o procedimento para atualizar estoque
         cursor.callproc('venda', [id_venda])
         conexao.commit()
 
@@ -74,7 +71,6 @@ def registrar_venda(usuario, senha):
 
 
 def listar_vendas(usuario, senha):
-    """Lista as últimas vendas registradas"""
     conexao = conectar(usuario, senha)
     if not conexao:
         return

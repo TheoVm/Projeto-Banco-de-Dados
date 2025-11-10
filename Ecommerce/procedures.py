@@ -40,8 +40,8 @@ def executar_sorteio(usuario, senha):
 
         for resultado in cursor.stored_results():
             for linha in resultado.fetchall():
-                print(f"\n🎉 Cliente sorteado: {linha[0]}")
-                print(f"💰 Valor do prêmio: R$ {linha[1]:.2f}")
+                print(f"\n Cliente sorteado: {linha[0]}")
+                print(f" Valor do prêmio: R$ {linha[1]:.2f}")
 
         conexao.commit()
     except Exception as e:
@@ -75,7 +75,7 @@ def executar_estatisticas(usuario, senha):
                     mes_menor = linha[6] if linha[6] else "N/A"
 
                     print(f"\n{'─' * 80}")
-                    print(f"📊 {tipo.upper()}")
+                    print(f" {tipo.upper()}")
                     print(f"{'─' * 80}")
                     print(f"Produto: {produto}")
                     print(f"Vendedor: {vendedor}")

@@ -408,7 +408,6 @@ BEGIN
 END$$
 DELIMITER ;
 
--- Inserção de 100 clientes com nomes reais e dados variados
 INSERT INTO cliente (nome, idade, sexo, nascimento) VALUES
 ('Ana Beatriz', 25, 'F', '1999-04-15'),
 ('Carlos Henrique', 32, 'M', '1992-01-08'),
@@ -521,8 +520,6 @@ INSERT INTO cliente (nome, idade, sexo, nascimento) VALUES
 ('Nathalia Moura', 27, 'F', '1998-04-22');
 
 
-
--- Inserção de vendedores (loja de música)
 INSERT INTO vendedor (nome, causa_social, tipo, salario, media)
 VALUES 
 ('Cláudio', 'RockStore Ltda', 'Álbuns de Rock', 2800.00, 4.7),
@@ -532,7 +529,6 @@ VALUES
 ('Lucas ', 'BrasilMusic Ltda', 'Álbuns e Camisetas nacionais', 2400.00, 4.4);
 
 
--- Inserção de produtos (20 produtos de música)
 INSERT INTO produto (nome, descricao, estoque, valor, observacoes, id_vendedor)
 VALUES
 -- Vendedor 1 - Rock
@@ -564,3 +560,15 @@ VALUES
 ('Camiseta Clube da Esquina', 'Estampa capa do álbum', 50, 95.00, '', 5),
 ('CD Flavio José - Tareco e Mariola', '', 30, 85.00, '', 5),
 ('Vinil Djavan - Luz', '', 20, 150.00, '', 5);
+
+INSERT INTO transportadora (nome, cidade) VALUES
+('Transportes Rápidos Ltda', 'São Paulo'),
+('Expresso Nacional', 'Rio de Janeiro'),
+('LogiVeloz', 'Belo Horizonte'),
+('TransCarga Brasil', 'Curitiba'),
+('Entregas Express', 'Porto Alegre'),
+('Rapidão Cometa', 'Brasília'),
+('JadLog', 'Salvador'),
+('Total Express', 'Recife'),
+('Azul Cargo', 'Fortaleza'),
+('Flash Courier', 'Manaus');
