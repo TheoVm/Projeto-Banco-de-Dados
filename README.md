@@ -13,7 +13,7 @@
   
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
   <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
-  <img src="https://img.shields.io/badge/Status-Finalizadoo-green?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Status-Finalizado-green?style=for-the-badge">
   
 </div>
 
