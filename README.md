@@ -19,7 +19,7 @@
 
 ---
 
-## 🏪 Sobre o Projeto
+## ℹ️ Sobre o Projeto
 
 O **Projeto Banco de Dados — Loja de Discos** foi desenvolvido como parte da disciplina de **Banco de Dados**, com o objetivo de **modelar e implementar um sistema de gerenciamento de uma loja de música**.
 
@@ -27,26 +27,26 @@ A aplicação simula o funcionamento de uma loja que realiza o **cadastro de cli
 
 ---
 
-## 💽 Funcionalidades
+##  Funcionalidades
 
-- 👤 **Cadastro de Clientes**  
+-  **Cadastro de Clientes**  
   Armazena informações como nome, sexo e data de nascimento.
 
-- 💼 **Cadastro de Vendedores**  
+-  **Cadastro de Vendedores**  
   Gerencia os funcionários da loja e suas respectivas vendas.
 
-- 💿 **Cadastro de Produtos (Discos)**  
+-  **Cadastro de Produtos (Discos)**  
   Inclui informações sobre álbuns, artistas, gêneros musicais e preços.
 
-- 🧾 **Registro de Vendas**  
+-  **Registro de Vendas**  
   Relaciona clientes, vendedores e produtos, controlando o histórico de transações.
 
-- 📊 **Consultas SQL**  
+-  **Consultas SQL**  
   Permite realizar consultas complexas para análise de desempenho de vendas.
 
 ---
 
-## 🧠 Modelagem do Banco de Dados
+## 🌐 Modelagem do Banco de Dados
 
 A modelagem foi feita seguindo os princípios fundamentais da modelagem de banco de dados, garantindo consistência e evitando redundância de dados.
 
