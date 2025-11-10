@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS ECOMMERCE;
 CREATE DATABASE ECOMMERCE;
 USE ECOMMERCE;
-FLUSH PRIVILEGES;
+
 
 CREATE TABLE cliente (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -85,6 +85,10 @@ CREATE TABLE log_mensagens (
     data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+DROP USER IF EXISTS 'ceo_ecommerce'@'%';
+DROP USER IF EXISTS 'gerente_ecommerce'@'%';
+DROP USER IF EXISTS 'funcionario_ecommerce'@'%';
+
 CREATE USER 'ceo_ecommerce'@'%' IDENTIFIED BY 'Ceo123456';
 GRANT ALL PRIVILEGES ON ecommerce.* TO 'ceo_ecommerce'@'%' WITH GRANT OPTION;
 
@@ -94,6 +98,8 @@ GRANT SELECT, UPDATE, DELETE ON ecommerce.* TO 'gerente_ecommerce'@'%';
 CREATE USER 'funcionario_ecommerce'@'%' IDENTIFIED BY 'SenhaFunc123';
 GRANT SELECT, INSERT ON venda TO 'funcionario_ecommerce'@'%';
 GRANT SELECT, INSERT ON item_venda TO 'funcionario_ecommerce'@'%';
+
+FLUSH PRIVILEGES;
 
 DELIMITER $$
 CREATE FUNCTION calcular_idade(

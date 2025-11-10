@@ -4,6 +4,32 @@ import venda
 import procedures
 import views
 import Login
+import createdelete
+
+
+def inicializar_banco():
+    """
+    Verifica e cria o banco de dados se necessário
+    """
+    print("\n" + "=" * 40)
+    print("   INICIALIZANDO SISTEMA E-COMMERCE")
+    print("=" * 40)
+    print("\nVerificando banco de dados...")
+
+    # Credenciais do root para criar o banco
+    HOST = 'localhost'
+    USER = 'root'
+    PASSWORD = input("Digite a senha do root do MySQL: ")
+
+    # Criar o banco de dados
+    success = createdelete.create_database_from_file(HOST, USER, PASSWORD)
+
+    if success:
+        print("\n✓ Sistema pronto para uso!")
+        return True
+    else:
+        print("\n✗ Erro ao inicializar o banco de dados.")
+        return False
 
 
 def menu():
@@ -54,6 +80,9 @@ def menu():
         print("11 - Ver clientes especiais")
         print("12 - Ver produtos vendidos")
 
+        print("\n--- BANCO DE DADOS ---")
+        print("13 - Deletar banco de dados")
+
         print("\n--- SISTEMA ---")
         print("0 - Sair")
         print("=" * 40)
@@ -84,6 +113,16 @@ def menu():
             views.ver_clientes_especiais(usuario, senha)
         elif opc == "12":
             views.ver_produtos_vendidos(usuario, senha)
+        elif opc == "13":
+            print("\n⚠️  ATENÇÃO: Isso irá DELETAR todo o banco de dados!")
+            confirmacao = input("Digite 'DELETAR' para continuar: ")
+            if confirmacao == "DELETAR":
+                senha_root = input("Digite a senha do root do MySQL: ")
+                createdelete.drop_database('localhost', 'root', senha_root, 'ECOMMERCE')
+                print("\n✓ Banco de dados deletado. Encerrando sistema...")
+                break
+            else:
+                print("Operação cancelada.")
         elif opc == "0":
             print("\nSistema encerrado. Até logo!")
             break
@@ -92,4 +131,8 @@ def menu():
 
 
 if __name__ == "__main__":
-    menu()
+    # Inicializa o banco de dados antes de abrir o menu
+    if inicializar_banco():
+        menu()
+    else:
+        print("\nNão foi possível iniciar o sistema.")
