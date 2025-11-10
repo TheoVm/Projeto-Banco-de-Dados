@@ -1,7 +1,7 @@
 from ecommerce_connection import conectar
 
-def executar_reajuste():
-    conexao = conectar()
+def executar_reajuste(usuario, senha):
+    conexao = conectar(usuario, senha)
     if not conexao:
         return
     cursor = conexao.cursor()
@@ -17,8 +17,8 @@ def executar_reajuste():
         cursor.close()
         conexao.close()
 
-def executar_sorteio():
-    conexao = conectar()
+def executar_sorteio(usuario, senha):
+    conexao = conectar(usuario, senha)
     if not conexao:
         return
     cursor = conexao.cursor()

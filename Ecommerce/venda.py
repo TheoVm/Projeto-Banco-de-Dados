@@ -1,7 +1,7 @@
 from ecommerce_connection import conectar
 from datetime import datetime
 
-def registrar_venda():
+def registrar_venda(usuario, senha):
     print("\n=== REGISTRAR VENDA ===")
     try:
         id_produto = int(input("ID do produto: "))
@@ -18,7 +18,7 @@ def registrar_venda():
     data = agora.date()
     hora = agora.time()
 
-    conexao = conectar()
+    conexao = conectar(usuario, senha)
     if not conexao:
         return
 

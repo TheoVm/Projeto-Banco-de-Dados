@@ -1,7 +1,9 @@
 from ecommerce_connection import conectar
 
 def main():
-    conexao = conectar()
+    usuario = "ceo_ecommerce"
+    senha = "Ceo123456"
+    conexao = conectar(usuario, senha)
     if conexao:
         cursor = conexao.cursor()
         cursor.execute("SHOW TABLES;")

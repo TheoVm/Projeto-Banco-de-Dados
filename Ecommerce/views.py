@@ -1,7 +1,7 @@
 from ecommerce_connection import conectar
 
-def ver_vendas_vendedor():
-    conexao = conectar()
+def ver_vendas_vendedor(usuario, senha):
+    conexao = conectar(usuario, senha)
     if not conexao:
         return
     cursor = conexao.cursor()
@@ -13,8 +13,8 @@ def ver_vendas_vendedor():
     cursor.close()
     conexao.close()
 
-def ver_clientes_especiais():
-    conexao = conectar()
+def ver_clientes_especiais(usuario, senha):
+    conexao = conectar(usuario, senha)
     if not conexao:
         return
     cursor = conexao.cursor()

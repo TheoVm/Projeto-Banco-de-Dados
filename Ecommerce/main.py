@@ -3,8 +3,23 @@ import produto
 import venda
 import procedures
 import views
+import Login
 
 def menu():
+    cargo = Login.login()
+    if cargo == 1:
+        usuario = "ceo_ecommerce"
+        senha = "Ceo123456"
+        print("\nLogado como CEO.")
+    if cargo == 2:
+        usuario = "gerente_ecommerce"
+        senha = "Gerente123"
+        print("\nLogado como Gerente.")
+    if cargo == 3:
+        usuario = "funcionario_ecommerce"
+        senha = "SenhaFunc123"
+        print("\nLogado como Funcionário.")
+
     while True:
         print("\n======= MENU PRINCIPAL =======")
         print("1 - Cadastrar cliente")
@@ -20,23 +35,23 @@ def menu():
         opc = input("Escolha: ")
 
         if opc == "1":
-            cliente.cadastrar_cliente()
+            cliente.cadastrar_cliente(usuario, senha)
         elif opc == "2":
-            cliente.listar_clientes()
+            cliente.listar_clientes(usuario, senha)
         elif opc == "3":
-            produto.cadastrar_produto()
+            produto.cadastrar_produto(usuario, senha)
         elif opc == "4":
-            produto.listar_produtos()
+            produto.listar_produtos(usuario, senha)
         elif opc == "5":
-            venda.registrar_venda()
+            venda.registrar_venda(usuario, senha)
         elif opc == "6":
-            procedures.executar_reajuste()
+            procedures.executar_reajuste(usuario, senha)
         elif opc == "7":
-            procedures.executar_sorteio()
+            procedures.executar_sorteio(usuario, senha)
         elif opc == "8":
-            views.ver_vendas_vendedor()
+            views.ver_vendas_vendedor(usuario, senha)
         elif opc == "9":
-            views.ver_clientes_especiais()
+            views.ver_clientes_especiais(usuario, senha)
         elif opc == "0":
             print("Menu fechado.")
             break

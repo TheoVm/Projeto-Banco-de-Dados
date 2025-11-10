@@ -1,7 +1,7 @@
 from ecommerce_connection import conectar
 from datetime import datetime
 
-def cadastrar_cliente():
+def cadastrar_cliente(usuario, senha):
     print("\n=== CADASTRAR CLIENTE ===")
     nome = input("Nome: ").strip()
     sexo = input("Sexo (M/F/O): ").strip().upper()
@@ -18,7 +18,7 @@ def cadastrar_cliente():
         print("Data inválida. Use o formato certo (DD-MM-AAAA).")
         return
 
-    conexao = conectar()
+    conexao = conectar(usuario, senha)
     if not conexao:
         return
 
@@ -36,8 +36,8 @@ def cadastrar_cliente():
         cursor.close()
         conexao.close()
 
-def listar_clientes():
-    conexao = conectar()
+def listar_clientes(usuario, senha):
+    conexao = conectar(usuario, senha)
     if not conexao:
         return
 

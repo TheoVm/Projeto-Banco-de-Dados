@@ -1,6 +1,6 @@
 from ecommerce_connection import conectar
 
-def cadastrar_produto():
+def cadastrar_produto(usuario, senha):
     print("\n=== CADASTRAR PRODUTO ===")
     nome = input("Nome do produto: ").strip()
     descricao = input("Descrição: ").strip()
@@ -12,7 +12,7 @@ def cadastrar_produto():
         return
     obs = input("Observações (opcional): ").strip()
 
-    conexao = conectar()
+    conexao = conectar(usuario, senha)
     if not conexao:
         return
 
@@ -30,8 +30,8 @@ def cadastrar_produto():
         cursor.close()
         conexao.close()
 
-def listar_produtos():
-    conexao = conectar()
+def listar_produtos(usuario, senha):
+    conexao = conectar(usuario, senha)
     if not conexao:
         return
 

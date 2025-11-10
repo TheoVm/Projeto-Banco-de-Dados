@@ -1,11 +1,11 @@
 import mysql.connector
 
-def conectar():
+def conectar(usuario, senha):
     try:
         conexao = mysql.connector.connect(
             host="localhost",
-            user="ceo_ecommerce",
-            password="Ceo123456",
+            user= usuario,
+            password= senha,
             database="ECOMMERCE"
         )
         if conexao.is_connected():
