@@ -5,34 +5,60 @@ import procedures
 import views
 import Login
 
+
 def menu():
     cargo = Login.login()
+
+    if cargo is None:
+        return
+
     if cargo == 1:
         usuario = "ceo_ecommerce"
         senha = "Ceo123456"
         print("\nLogado como CEO.")
-    if cargo == 2:
+    elif cargo == 2:
         usuario = "gerente_ecommerce"
         senha = "Gerente123"
         print("\nLogado como Gerente.")
-    if cargo == 3:
+    elif cargo == 3:
         usuario = "funcionario_ecommerce"
         senha = "SenhaFunc123"
         print("\nLogado como Funcionário.")
+    else:
+        print("Cargo inválido.")
+        return
 
     while True:
-        print("\n======= MENU PRINCIPAL =======")
+        print("\n" + "=" * 40)
+        print("       MENU PRINCIPAL - E-COMMERCE")
+        print("=" * 40)
+        print("\n--- CLIENTES ---")
         print("1 - Cadastrar cliente")
         print("2 - Listar clientes")
+
+        print("\n--- PRODUTOS ---")
         print("3 - Cadastrar produto")
         print("4 - Listar produtos")
+
+        print("\n--- VENDAS ---")
         print("5 - Registrar venda")
-        print("6 - Executar reajuste (procedure)")
-        print("7 - Executar sorteio (procedure)")
-        print("8 - Ver vendas por vendedor (view)")
-        print("9 - Ver clientes especiais (view)")
+        print("6 - Listar vendas")
+
+        print("\n--- PROCEDURES ---")
+        print("7 - Executar reajuste salarial")
+        print("8 - Executar sorteio de prêmio")
+        print("9 - Ver estatísticas de vendas")
+
+        print("\n--- VIEWS ---")
+        print("10 - Ver vendas por vendedor")
+        print("11 - Ver clientes especiais")
+        print("12 - Ver produtos vendidos")
+
+        print("\n--- SISTEMA ---")
         print("0 - Sair")
-        opc = input("Escolha: ")
+        print("=" * 40)
+
+        opc = input("\nEscolha uma opção: ").strip()
 
         if opc == "1":
             cliente.cadastrar_cliente(usuario, senha)
@@ -45,18 +71,25 @@ def menu():
         elif opc == "5":
             venda.registrar_venda(usuario, senha)
         elif opc == "6":
-            procedures.executar_reajuste(usuario, senha)
+            venda.listar_vendas(usuario, senha)
         elif opc == "7":
-            procedures.executar_sorteio(usuario, senha)
+            procedures.executar_reajuste(usuario, senha)
         elif opc == "8":
-            views.ver_vendas_vendedor(usuario, senha)
+            procedures.executar_sorteio(usuario, senha)
         elif opc == "9":
+            procedures.executar_estatisticas(usuario, senha)
+        elif opc == "10":
+            views.ver_vendas_vendedor(usuario, senha)
+        elif opc == "11":
             views.ver_clientes_especiais(usuario, senha)
+        elif opc == "12":
+            views.ver_produtos_vendidos(usuario, senha)
         elif opc == "0":
-            print("Menu fechado.")
+            print("\nSistema encerrado. Até logo!")
             break
         else:
-            print("Opção inválida, insira uma opção dentre as apresentadas.")
+            print("\n⚠️  Opção inválida! Escolha uma opção do menu.")
+
 
 if __name__ == "__main__":
     menu()

@@ -1,19 +1,24 @@
 def login():
     while True:
-        print("\n============Login======")
-        print("1 -CEO")
-        print ("2 - Gerente")
-        print("3- Funcionario")
-        print("0- Sair")
-        opc=input("Escolha:  ")
-        if opc=="1":
+        print("\n" + "=" * 40)
+        print("           LOGIN - E-COMMERCE")
+        print("=" * 40)
+        print("1 - CEO")
+        print("2 - Gerente")
+        print("3 - Funcionário")
+        print("0 - Sair")
+        print("=" * 40)
+
+        opc = input("Escolha seu perfil: ").strip()
+
+        if opc == "1":
             return 1
         elif opc == "2":
             return 2
         elif opc == "3":
             return 3
         elif opc == "0":
-            print("Menu fechado.")
-            break
+            print("\nSaindo do sistema...")
+            return None  # Retorna None para indicar saída
         else:
-            print("Opção invalida, insira uma opção dentre as apresentadas.")
+            print("\n⚠️  Opção inválida! Insira uma opção válida.")

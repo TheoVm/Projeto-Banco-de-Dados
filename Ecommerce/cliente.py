@@ -51,7 +51,7 @@ def listar_clientes(usuario, senha):
             sexo, 
             DATE_FORMAT(nascimento, '%d-%m-%Y') as nasc_formatado
         FROM cliente 
-        LIMIT 15;
+        LIMIT 100;
     """
     cursor.execute(sql)
 
