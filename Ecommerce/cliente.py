@@ -1,4 +1,5 @@
 from ecommerce_connection import conectar
+from mysql.connector import Error
 from datetime import datetime
 
 def cadastrar_cliente(usuario, senha):
@@ -29,9 +30,17 @@ def cadastrar_cliente(usuario, senha):
         cursor.execute(sql, dados)
         conexao.commit()
         print(f"Cliente {nome} cadastrado com êxito.")
+    except Error as e:
+        conexao.rollback()
+        if e.errno == 1142:
+            print("\n[PERMISSAO NEGADA]")
+            print("Voce nao tem permissao para cadastrar clientes.")
+            print("Apenas gerentes e CEOs podem cadastrar clientes.")
+        else:
+            print(f"Erro ao cadastrar o cliente: {e}")
     except Exception as e:
         conexao.rollback()
-        print("Erro ao cadastrar o cliente:", e)
+        print(f"Erro inesperado: {e}")
     finally:
         cursor.close()
         conexao.close()
@@ -43,27 +52,38 @@ def listar_clientes(usuario, senha):
 
     cursor = conexao.cursor(dictionary=True)
 
-    sql = """
-        SELECT 
-            id, 
-            nome, 
-            idade, 
-            sexo, 
-            DATE_FORMAT(nascimento, '%d-%m-%Y') as nasc_formatado
-        FROM cliente 
-        LIMIT 100;
-    """
-    cursor.execute(sql)
+    try:
+        sql = """
+            SELECT 
+                id, 
+                nome, 
+                idade, 
+                sexo, 
+                DATE_FORMAT(nascimento, '%d-%m-%Y') as nasc_formatado
+            FROM cliente 
+            LIMIT 100;
+        """
+        cursor.execute(sql)
 
-    resultados = cursor.fetchall()
+        resultados = cursor.fetchall()
 
-    print("\n=== LISTA DE CLIENTES ===")
+        print("\n=== LISTA DE CLIENTES ===")
 
-    if not resultados:
-        print("Nenhum cliente cadastrado.")
-    else:
-        for cliente in resultados:
-            print(f"ID: {cliente['id']} | Nome: {cliente['nome']} | {cliente['sexo']} | {cliente['idade']} anos | Nasc: {cliente['nasc_formatado']}")
+        if not resultados:
+            print("Nenhum cliente cadastrado.")
+        else:
+            for cliente in resultados:
+                print(f"ID: {cliente['id']} | Nome: {cliente['nome']} | {cliente['sexo']} | {cliente['idade']} anos | Nasc: {cliente['nasc_formatado']}")
 
-    cursor.close()
-    conexao.close()
+    except Error as e:
+        if e.errno == 1142:
+            print("\n[PERMISSAO NEGADA]")
+            print("Voce nao tem permissao para listar clientes.")
+            print("Contate um gerente ou CEO.")
+        else:
+            print(f"Erro ao listar clientes: {e}")
+    except Exception as e:
+        print(f"Erro inesperado: {e}")
+    finally:
+        cursor.close()
+        conexao.close()
