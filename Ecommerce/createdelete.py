@@ -85,13 +85,15 @@ def create_database_from_file(host, user, password, filename='Ecommerce.sql'):
 
 def drop_database(host, user, password, db_name):
     print(f"\nTentando deletar o banco de dados '{db_name}'...")
+
     conexao = None
     try:
         conexao = mysql.connector.connect(
             host=host,
-            user=user,
-            password=password
+            user=user,  # Deve ser 'root'
+            password=password  # Deve ser a senha do root
         )
+
         if conexao.is_connected():
             cursor = conexao.cursor()
 
@@ -114,6 +116,7 @@ def drop_database(host, user, password, db_name):
     except Error as erro:
         print(f"Erro ao deletar o banco de dados: {erro}")
         return False
+
     finally:
         if conexao and conexao.is_connected():
             conexao.close()

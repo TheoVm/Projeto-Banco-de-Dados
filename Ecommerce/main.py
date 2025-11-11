@@ -49,6 +49,7 @@ def menu():
         return
 
     while True:
+
         print("\n" + "=" * 40)
         print("       MENU PRINCIPAL - E-COMMERCE")
         print("=" * 40)
@@ -73,9 +74,10 @@ def menu():
         print("10 - Ver vendas por vendedor")
         print("11 - Ver clientes especiais")
         print("12 - Ver produtos vendidos")
+        print("13 - Ver funcionarios especiais")
 
         print("\n--- BANCO DE DADOS ---")
-        print("13 - Deletar banco de dados")
+        print("14 - Deletar banco de dados")
 
         print("\n--- SISTEMA ---")
         print("0 - Sair")
@@ -108,20 +110,26 @@ def menu():
         elif opc == "12":
             views.ver_produtos_vendidos(usuario, senha)
         elif opc == "13":
-            print("\nATENÇÃO: Isso irá DELETAR todo o banco de dados!")
-            confirmacao = input("Digite 'DELETAR' para continuar: ")
-            if confirmacao == "DELETAR":
-                senha_root = input("Digite a senha do root do MySQL: ")
-                createdelete.drop_database('localhost', 'root', senha_root, 'ECOMMERCE')
-                print("\nBanco de dados deletado. Encerrando sistema...")
-                break
+            views.ver_funcionarios_especiais(usuario, senha)
+        elif opc == "14":
+            if usuario != "ceo_ecommerce":
+                print("Usuário sem permissão para deletar o banco de dados.")
             else:
-                print("Operação cancelada.")
+                print("\nATENÇÃO: Isso irá DELETAR todo o banco de dados!")
+                confirmacao = input("Digite 'DELETAR' para continuar: ")
+                if confirmacao == "DELETAR":
+                    senha_root = input("Digite a senha do root do MySQL: ")
+                    createdelete.drop_database('localhost', 'root', senha_root, 'ECOMMERCE')
+                    print("\nBanco de dados deletado. Encerrando sistema...")
+                    break
+                else:
+                    print("Operação cancelada.")
         elif opc == "0":
             print("\nSistema encerrado.")
             break
         else:
             print("\nOpção inválida! Escolha uma opção do menu.")
+
 
 
 if __name__ == "__main__":

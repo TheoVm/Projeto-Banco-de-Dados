@@ -81,3 +81,32 @@ def ver_produtos_vendidos(usuario, senha):
 
     cursor.close()
     conexao.close()
+
+
+def ver_funcionarios_especiais(usuario, senha):
+    conexao = conectar(usuario, senha)
+    if not conexao:
+        return
+
+    cursor = conexao.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM view_funcionarios_especiais ORDER BY bonus DESC")
+    dados = cursor.fetchall()
+
+    print("\n" + "=" * 80)
+    print(" " * 25 + "FUNCIONÁRIOS ESPECIAIS")
+    print("=" * 80)
+
+    if not dados:
+        print("Nenhum funcionário especial encontrado.")
+    else:
+        for d in dados:
+            print(f"\nVendedor: {d['nome_vendedor']} (ID: {d['id_vendedor']})")
+            print(f"  Causa Social: {d['causa_social']}")
+            print(f"  Tipo: {d['tipo']}")
+            print(f"  Salário Base: R$ {d['salario']:.2f}")
+            print(f"  Bônus: R$ {d['bonus']:.2f}")
+            print(f"  Salário Total: R$ {d['salario_total']:.2f}")
+            print("-" * 80)
+
+    cursor.close()
+    conexao.close()

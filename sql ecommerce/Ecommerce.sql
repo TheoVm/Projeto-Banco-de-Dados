@@ -89,15 +89,23 @@ DROP USER IF EXISTS 'ceo_ecommerce'@'%';
 DROP USER IF EXISTS 'gerente_ecommerce'@'%';
 DROP USER IF EXISTS 'funcionario_ecommerce'@'%';
 
+
 CREATE USER 'ceo_ecommerce'@'%' IDENTIFIED BY 'Ceo123456';
 GRANT ALL PRIVILEGES ON ecommerce.* TO 'ceo_ecommerce'@'%' WITH GRANT OPTION;
 
+
 CREATE USER 'gerente_ecommerce'@'%' IDENTIFIED BY 'Gerente123';
+
 GRANT SELECT, UPDATE, DELETE ON ecommerce.* TO 'gerente_ecommerce'@'%';
 
 CREATE USER 'funcionario_ecommerce'@'%' IDENTIFIED BY 'SenhaFunc123';
 GRANT SELECT, INSERT ON venda TO 'funcionario_ecommerce'@'%';
 GRANT SELECT, INSERT ON item_venda TO 'funcionario_ecommerce'@'%';
+
+GRANT SELECT ON cliente TO 'funcionario_ecommerce'@'%';
+GRANT SELECT ON produto TO 'funcionario_ecommerce'@'%';
+GRANT SELECT ON vendedor TO 'funcionario_ecommerce'@'%';
+GRANT SELECT ON transportadora TO 'funcionario_ecommerce'@'%';
 
 FLUSH PRIVILEGES;
 
@@ -282,7 +290,20 @@ JOIN item_venda ON produto.id = item_venda.id_produto
 JOIN vendedor ON produto.id_vendedor = vendedor.id
 GROUP BY produto.id, produto.nome, vendedor.nome;
 
+CREATE OR REPLACE VIEW view_funcionarios_especiais AS
+SELECT 
+    v.id AS id_vendedor,
+    v.nome AS nome_vendedor,
+    v.causa_social,
+    v.tipo,
+    v.salario,
+    fe.bonus,
+    (v.salario + fe.bonus) AS salario_total
+FROM vendedor v
+INNER JOIN funcionario_especial fe ON v.id = fe.id_vendedor;
+
 DELIMITER $$
+
 CREATE PROCEDURE reajuste(
     IN p_percentual DECIMAL(5,2), 
     IN p_categoria VARCHAR(50)
